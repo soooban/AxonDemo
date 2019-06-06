@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: event-sourcing-service
+  datasource:
+    url: jdbc:mysql://localhost:3306/event?useUnicode=true&autoReconnect=true&rewriteBatchedStatements=TRUE
+    username: root
+    password: root
+  jpa:
+    hibernate:
+      ddl-auto: update
+      use-new-id-generator-mappings: false
+    show-sql: false
+    properties:
+      hibernate.dialect: org.hibernate.dialect.MySQL55Dialect
