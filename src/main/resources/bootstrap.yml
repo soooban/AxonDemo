@@ -12,3 +12,6 @@ spring:
     show-sql: false
     properties:
       hibernate.dialect: org.hibernate.dialect.MySQL55Dialect
+axon:
+  serializer:
+    general: jackson
