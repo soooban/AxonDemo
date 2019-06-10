@@ -6,6 +6,7 @@ import com.craftsman.eventsourcing.es.command.UpdateContractCommand;
 import com.craftsman.eventsourcing.es.event.ContractCreatedEvent;
 import com.craftsman.eventsourcing.es.event.ContractDeletedEvent;
 import com.craftsman.eventsourcing.es.event.ContractUpdatedEvent;
+import com.craftsman.eventsourcing.helper.UIDGenerator;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -36,7 +37,10 @@ public class ContractAggregate implements ContractInterface {
     private boolean deleted = false;
 
     @CommandHandler
-    public ContractAggregate(CreateContractCommand command, MetaData metaData) {
+    public ContractAggregate(CreateContractCommand command, MetaData metaData, UIDGenerator generator) {
+        if (null == command.getIdentifier()) {
+            command.setIdentifier(generator.getId());
+        }
         AggregateLifecycle.apply(new ContractCreatedEvent(command.getIdentifier(), command.getName(), command.getPartyA(), command.getPartyB()), metaData);
     }
 
