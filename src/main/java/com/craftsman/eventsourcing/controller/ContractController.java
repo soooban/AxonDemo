@@ -17,8 +17,8 @@ public class ContractController {
     private final CommandGateway commandGateway;
 
     @PostMapping
-    public void createContract(@RequestBody @Valid CreateContractCommand command) {
-        commandGateway.send(command);
+    public Long createContract(@RequestBody @Valid CreateContractCommand command) {
+        return commandGateway.sendAndWait(command);
     }
 
     @PutMapping("/{id}")

@@ -10,8 +10,6 @@ import lombok.Setter;
 @NoArgsConstructor
 public class UpdateContractCommand extends AbstractCommand implements ContractInterface {
 
-    private Long identifier;
-
     private String name;
 
     private String partyA;

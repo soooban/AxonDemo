@@ -10,8 +10,6 @@ import lombok.Setter;
 @NoArgsConstructor
 public class ContractUpdatedEvent extends AbstractEvent implements ContractInterface {
 
-    private Long identifier;
-
     private String name;
 
     private String partyA;
