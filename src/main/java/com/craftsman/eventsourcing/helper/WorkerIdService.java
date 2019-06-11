@@ -3,6 +3,7 @@ package com.craftsman.eventsourcing.helper;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
+import org.springframework.cloud.client.serviceregistry.Registration;
 import org.springframework.stereotype.Service;
 
 import java.net.Inet4Address;
@@ -16,7 +17,7 @@ import java.util.Enumeration;
 public class WorkerIdService {
 
     private final WorkerIdRepository workerIdRepository;
-
+    private final Registration registration;
 
     Long getWorkerId() {
 
@@ -29,6 +30,8 @@ public class WorkerIdService {
         }
 
         workerId = new WorkerId();
+        // 如果你的 Spring Boot 版本 >= 2.1.0 并且使用的 Discovery 提供了该方法的实现则可以直接使用
+        // workerId.setServiceKey(registration.getInstanceId());
         workerId.setServiceKey(serviceKey);
         workerIdRepository.save(workerId);
         return workerId.getId() % (SnowFlake.MAX_MACHINE_NUM + 1);
@@ -36,7 +39,7 @@ public class WorkerIdService {
 
     /**
      * 由于 Spring Cloud Discovery 的 ServiceInstance 接口没有一个获取 instance id 的方法，所以只能想办法自己标记
-     *
+     * Spring Cloud Discovery 在 2.1.0 之后的版本在接口中提供了 getInstanceId 这一方法，但是可以为空，所以需要各个实现，我看了 K8S 和 consul 都提供了该方法的实现
      * @return ip:mac_address 形式的字符串
      */
     public String getServiceKey() {
@@ -77,7 +80,6 @@ public class WorkerIdService {
             String s = Integer.toHexString(mac[i] & 0xFF);
             macAddress.append(s.length() == 1 ? 0 + s : s);
         }
-
         // 把字符串所有小写字母改为大写成为正规的mac地址并返回
         return hostAddress + ":" + macAddress.toString().toUpperCase();
     }
