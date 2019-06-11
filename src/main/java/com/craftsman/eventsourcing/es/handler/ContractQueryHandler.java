@@ -1,10 +1,8 @@
 package com.craftsman.eventsourcing.es.handler;
 
-import com.craftsman.eventsourcing.entity.ContractViewRepository;
 import com.craftsman.eventsourcing.es.ContractAggregate;
 import com.craftsman.eventsourcing.es.command.QueryContractCommand;
 import com.craftsman.eventsourcing.es.continuance.producer.jpa.CustomEventSourcingRepository;
-import com.thoughtworks.xstream.mapper.Mapper;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.axonframework.eventsourcing.EventSourcedAggregate;
@@ -16,8 +14,6 @@ import org.springframework.stereotype.Component;
 @AllArgsConstructor
 @Slf4j
 public class ContractQueryHandler {
-    private final ContractViewRepository contractViewRepository;
-
     private final CustomEventSourcingRepository<ContractAggregate> contractAggregateRepository;
 
     @QueryHandler
