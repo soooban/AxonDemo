@@ -1,14 +1,12 @@
 package com.craftsman.eventsourcing.es.upcaster;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import lombok.Getter;
 import org.axonframework.messaging.MetaData;
 import org.axonframework.serialization.SerializedType;
 import org.axonframework.serialization.SimpleSerializedType;
 import org.axonframework.serialization.upcasting.event.IntermediateEventRepresentation;
 import org.axonframework.serialization.upcasting.event.SingleEventUpcaster;
 
-@Getter
 public abstract class SameEventUpCaster extends SingleEventUpcaster {
 
     protected boolean canUpcast(IntermediateEventRepresentation intermediateRepresentation) {

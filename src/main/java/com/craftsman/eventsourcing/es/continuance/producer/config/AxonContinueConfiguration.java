@@ -2,9 +2,12 @@ package com.craftsman.eventsourcing.es.continuance.producer.config;
 
 
 import com.craftsman.eventsourcing.es.ContractAggregate;
+import com.craftsman.eventsourcing.es.ContractCommandGateway;
 import com.craftsman.eventsourcing.es.continuance.producer.jpa.CustomEmbeddedEventStore;
 import com.craftsman.eventsourcing.es.continuance.producer.jpa.CustomEventSourcingRepository;
 import com.craftsman.eventsourcing.es.upcaster.ContractEventUpCaster;
+import org.axonframework.commandhandling.SimpleCommandBus;
+import org.axonframework.commandhandling.gateway.CommandGatewayFactory;
 import org.axonframework.common.jdbc.PersistenceExceptionResolver;
 import org.axonframework.common.jpa.EntityManagerProvider;
 import org.axonframework.common.transaction.TransactionManager;
@@ -96,5 +99,15 @@ public class AxonContinueConfiguration {
     @Bean
     public EventUpcaster contractUpCaster() {
         return new ContractEventUpCaster();
+    }
+
+    @Bean
+    public ContractCommandGateway getCommandGateway(SimpleCommandBus simpleCommandBus, CommandInterceptor commandInterceptor) {
+        return CommandGatewayFactory.builder()
+            .commandBus(simpleCommandBus)
+            .retryScheduler(new CommandRetryScheduler())
+            .dispatchInterceptors(commandInterceptor)
+            .build()
+            .createGateway(ContractCommandGateway.class);
     }
 }
