@@ -1,6 +1,5 @@
 package com.craftsman.eventsourcing.es.command;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -10,7 +9,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class CreateContractCommand extends UpdateContractCommand {
 
-    public CreateContractCommand(Long identifier, String name, String partyA, String partyB) {
-        super(identifier, name, partyA, partyB);
+    public CreateContractCommand(Long identifier, String name, String partyA, String partyB, String industryName) {
+        super(identifier, name, partyA, partyB, industryName);
     }
 }

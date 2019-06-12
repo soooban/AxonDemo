@@ -16,10 +16,13 @@ public class ContractUpdatedEvent extends AbstractEvent implements ContractInter
 
     private String partyB;
 
-    public ContractUpdatedEvent(Long identifier, String name, String partyA, String partyB) {
+    private String industryName;
+
+    public ContractUpdatedEvent(Long identifier, String name, String partyA, String partyB, String industryName) {
         super(identifier);
         this.name = name;
         this.partyA = partyA;
         this.partyB = partyB;
+        this.industryName = industryName;
     }
 }

@@ -34,6 +34,8 @@ public class ContractAggregate implements ContractInterface {
 
     private String partyB;
 
+    private String industryName;
+
     private boolean deleted = false;
 
     @CommandHandler
@@ -41,12 +43,21 @@ public class ContractAggregate implements ContractInterface {
         if (null == command.getIdentifier()) {
             command.setIdentifier(generator.getId());
         }
-        AggregateLifecycle.apply(new ContractCreatedEvent(command.getIdentifier(), command.getName(), command.getPartyA(), command.getPartyB()), metaData);
+        AggregateLifecycle.apply(new ContractCreatedEvent(command.getIdentifier(),
+            command.getName(),
+            command.getPartyA(),
+            command.getPartyB(),
+            command.getIndustryName()), metaData);
     }
 
     @CommandHandler
     private void on(UpdateContractCommand command, MetaData metaData) {
-        AggregateLifecycle.apply(new ContractUpdatedEvent(command.getIdentifier(), command.getName(), command.getPartyA(), command.getPartyB()), metaData);
+        AggregateLifecycle.apply(new ContractUpdatedEvent(command.getIdentifier(),
+                command.getName(),
+                command.getPartyA(),
+                command.getPartyB(),
+                command.getIndustryName()),
+            metaData);
     }
 
     @CommandHandler
@@ -65,6 +76,7 @@ public class ContractAggregate implements ContractInterface {
         this.setName(event.getName());
         this.setPartyA(event.getPartyA());
         this.setPartyB(event.getPartyB());
+        this.setIndustryName(event.getIndustryName());
     }
 
     @EventSourcingHandler(payloadType = ContractDeletedEvent.class)

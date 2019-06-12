@@ -4,6 +4,7 @@ package com.craftsman.eventsourcing.es.continuance.producer.config;
 import com.craftsman.eventsourcing.es.ContractAggregate;
 import com.craftsman.eventsourcing.es.continuance.producer.jpa.CustomEmbeddedEventStore;
 import com.craftsman.eventsourcing.es.continuance.producer.jpa.CustomEventSourcingRepository;
+import com.craftsman.eventsourcing.es.upcaster.ContractEventUpCaster;
 import org.axonframework.common.jdbc.PersistenceExceptionResolver;
 import org.axonframework.common.jpa.EntityManagerProvider;
 import org.axonframework.common.transaction.TransactionManager;
@@ -14,6 +15,7 @@ import org.axonframework.eventsourcing.eventstore.EventStore;
 import org.axonframework.eventsourcing.eventstore.jpa.JpaEventStorageEngine;
 import org.axonframework.messaging.annotation.ParameterResolverFactory;
 import org.axonframework.serialization.Serializer;
+import org.axonframework.serialization.upcasting.event.EventUpcaster;
 import org.axonframework.spring.config.AxonConfiguration;
 import org.axonframework.springboot.util.RegisterDefaultEntities;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -72,12 +74,12 @@ public class AxonContinueConfiguration {
     public EventStorageEngine eventStorageEngine(Serializer defaultSerializer,
                                                  PersistenceExceptionResolver persistenceExceptionResolver,
                                                  @Qualifier("eventSerializer") Serializer eventSerializer,
-                                                 AxonConfiguration configuration,
                                                  EntityManagerProvider entityManagerProvider,
+                                                 EventUpcaster contractUpCaster,
                                                  TransactionManager transactionManager) {
         return JpaEventStorageEngine.builder()
             .snapshotSerializer(defaultSerializer)
-            .upcasterChain(configuration.upcasterChain())
+            .upcasterChain(contractUpCaster)
             .persistenceExceptionResolver(persistenceExceptionResolver)
             .eventSerializer(eventSerializer)
             .entityManagerProvider(entityManagerProvider)
@@ -89,5 +91,10 @@ public class AxonContinueConfiguration {
     public EventProcessingConfigurer eventProcessingConfigurer(EventProcessingConfigurer eventProcessingConfigurer) {
         eventProcessingConfigurer.usingSubscribingEventProcessors();
         return eventProcessingConfigurer;
+    }
+
+    @Bean
+    public EventUpcaster contractUpCaster() {
+        return new ContractEventUpCaster();
     }
 }

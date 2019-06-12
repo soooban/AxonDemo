@@ -11,4 +11,7 @@ public interface ContractInterface {
 
     @NotBlank
     String getPartyB();
+
+    @NotBlank
+    String getIndustryName();
 }

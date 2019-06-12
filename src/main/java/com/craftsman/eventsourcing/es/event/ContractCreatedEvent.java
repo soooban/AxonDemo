@@ -9,7 +9,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class ContractCreatedEvent extends ContractUpdatedEvent {
 
-    public ContractCreatedEvent(Long identifier, String name, String partyA, String partyB) {
-        super(identifier, name, partyA, partyB);
+    public ContractCreatedEvent(Long identifier, String name, String partyA, String partyB, String industryName) {
+        super(identifier, name, partyA, partyB, industryName);
     }
 }

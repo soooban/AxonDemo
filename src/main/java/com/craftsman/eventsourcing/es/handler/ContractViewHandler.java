@@ -54,7 +54,7 @@ public class ContractViewHandler {
         contractView.setName(aggregate.getName());
         contractView.setPartyA(aggregate.getPartyA());
         contractView.setPartyB(aggregate.getPartyB());
-
+        contractView.setIndustryName(aggregate.getIndustryName());
         contractViewRepository.save(contractView);
     }
 }

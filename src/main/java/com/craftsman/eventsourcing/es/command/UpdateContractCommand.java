@@ -16,10 +16,13 @@ public class UpdateContractCommand extends AbstractCommand implements ContractIn
 
     private String partyB;
 
-    public UpdateContractCommand(Long identifier, String name, String partyA, String partyB) {
+    private String industryName;
+
+    public UpdateContractCommand(Long identifier, String name, String partyA, String partyB, String industryName) {
         super(identifier);
         this.name = name;
         this.partyA = partyA;
         this.partyB = partyB;
+        this.industryName = industryName;
     }
 }
