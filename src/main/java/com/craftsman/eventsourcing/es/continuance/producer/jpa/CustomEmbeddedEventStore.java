@@ -38,7 +38,7 @@ public class CustomEmbeddedEventStore extends EmbeddedEventStore {
         }
         DomainEventStream eventStream;
         // 加上时间判断，如果 snapshot 在指定的时间之间，那么可以使用，否则直接读取所有的 events
-        if (optionalSnapshot.isPresent() && optionalSnapshot.get().getTimestamp().isBefore(timestamp)) {
+        if (optionalSnapshot.isPresent() && optionalSnapshot.get().getTimestamp().compareTo(timestamp) <= 0) {
             DomainEventMessage<?> snapshot = optionalSnapshot.get();
             eventStream = DomainEventStream.concat(DomainEventStream.of(snapshot),
                 storageEngine().readEvents(aggregateIdentifier,
