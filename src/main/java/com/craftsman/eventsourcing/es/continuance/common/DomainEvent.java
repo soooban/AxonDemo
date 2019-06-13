@@ -1,16 +1,19 @@
 package com.craftsman.eventsourcing.es.continuance.common;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
 
 import java.time.Instant;
-import java.util.HashMap;
 
 @Getter
 @Setter
-@Builder
+@Slf4j
 @NoArgsConstructor
 @AllArgsConstructor
-public class DomainEvent {
+public class DomainEvent<P, M> {
 
     /**
      * 领域类型，用于区分事件领域，如 Building，不可为 null
@@ -50,10 +53,10 @@ public class DomainEvent {
     /**
      * 事件内容，optional
      */
-    private HashMap payload;
+    private P payload;
 
     /**
      * 事件附加信息，可以存放操作人等信息，optional
      */
-    private HashMap metaData;
+    private M metaData;
 }
