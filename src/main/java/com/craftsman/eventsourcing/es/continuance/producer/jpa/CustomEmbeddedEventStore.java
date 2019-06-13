@@ -74,6 +74,7 @@ public class CustomEmbeddedEventStore extends EmbeddedEventStore {
          *
          * @param cachedEvents an {@code int} specifying the maximum number of events in the cache that is shared
          *                     between the streams of tracking event processors
+         *
          * @return the current Builder instance, for fluent interfacing
          */
         public CustomEmbeddedEventStore.Builder cachedEvents(int cachedEvents) {
@@ -91,6 +92,7 @@ public class CustomEmbeddedEventStore extends EmbeddedEventStore {
          *
          * @param fetchDelay a {@code long} specifying the time to wait before fetching new events from the backing
          *                   storage engine while tracking after a previous com.craftsman.eventsourcing.stream was fetched and read
+         *
          * @return the current Builder instance, for fluent interfacing
          */
         public CustomEmbeddedEventStore.Builder fetchDelay(long fetchDelay) {
@@ -109,6 +111,7 @@ public class CustomEmbeddedEventStore extends EmbeddedEventStore {
          * delay.
          *
          * @param cleanupDelay a {@code long} specifying the delay between two clean ups of lagging event processors
+         *
          * @return the current Builder instance, for fluent interfacing
          */
         public CustomEmbeddedEventStore.Builder cleanupDelay(long cleanupDelay) {
@@ -121,6 +124,7 @@ public class CustomEmbeddedEventStore extends EmbeddedEventStore {
          * {@link TimeUnit#MILLISECONDS}.
          *
          * @param timeUnit the {@link TimeUnit} for the {@link EmbeddedEventStore.Builder#fetchDelay} and {@link EmbeddedEventStore.Builder#cleanupDelay}
+         *
          * @return the current Builder instance, for fluent interfacing
          */
         public CustomEmbeddedEventStore.Builder timeUnit(TimeUnit timeUnit) {
@@ -133,6 +137,7 @@ public class CustomEmbeddedEventStore extends EmbeddedEventStore {
          * a {@link AxonThreadFactory} with {@link ThreadGroup} {@link EmbeddedEventStore#THREAD_GROUP}.
          *
          * @param threadFactory a {@link ThreadFactory} used to create threads for consuming, producing and cleaning up
+         *
          * @return the current Builder instance, for fluent interfacing
          */
         public CustomEmbeddedEventStore.Builder threadFactory(ThreadFactory threadFactory) {
@@ -151,6 +156,7 @@ public class CustomEmbeddedEventStore extends EmbeddedEventStore {
          * @param optimizeEventConsumption a {@code boolean} defining whether to optimize event consumption of threads
          *                                 by introducing a Event Cache Production thread tailing the head of the com.craftsman.eventsourcing.stream
          *                                 for the consumers
+         *
          * @return the current Builder instance, for fluent interfacing
          */
         public CustomEmbeddedEventStore.Builder optimizeEventConsumption(boolean optimizeEventConsumption) {

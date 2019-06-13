@@ -37,7 +37,7 @@ public class ContractPublisher {
     }
 
     public void sendEvent(CustomDomainEventEntry event) {
-        // use com.craftsman.eventsourcing.stream to send message here
+        // use stream to send message here
         ObjectMapper mapper = new ObjectMapper();
 
         HashMap payload = null;
@@ -54,7 +54,7 @@ public class ContractPublisher {
             return;
         }
 
-        DomainEvent domainEvent = new DomainEvent(
+        DomainEvent<HashMap, HashMap> domainEvent = new DomainEvent<>(
             event.getType(),
             event.getAggregateIdentifier(),
             event.getPayload().getType().getName(),
