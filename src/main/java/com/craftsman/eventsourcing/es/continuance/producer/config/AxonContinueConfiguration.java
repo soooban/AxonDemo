@@ -5,6 +5,7 @@ import com.craftsman.eventsourcing.es.ContractAggregate;
 import com.craftsman.eventsourcing.es.ContractCommandGateway;
 import com.craftsman.eventsourcing.es.continuance.producer.jpa.CustomEmbeddedEventStore;
 import com.craftsman.eventsourcing.es.continuance.producer.jpa.CustomEventSourcingRepository;
+import com.craftsman.eventsourcing.es.continuance.producer.jpa.CustomJpaEventStorageEngine;
 import com.craftsman.eventsourcing.es.upcaster.ContractEventUpCaster;
 import org.axonframework.commandhandling.SimpleCommandBus;
 import org.axonframework.commandhandling.gateway.CommandGatewayFactory;
@@ -15,12 +16,10 @@ import org.axonframework.config.EventProcessingConfigurer;
 import org.axonframework.eventsourcing.*;
 import org.axonframework.eventsourcing.eventstore.EventStorageEngine;
 import org.axonframework.eventsourcing.eventstore.EventStore;
-import org.axonframework.eventsourcing.eventstore.jpa.JpaEventStorageEngine;
 import org.axonframework.messaging.annotation.ParameterResolverFactory;
 import org.axonframework.serialization.Serializer;
 import org.axonframework.serialization.upcasting.event.EventUpcaster;
 import org.axonframework.spring.config.AxonConfiguration;
-import org.axonframework.springboot.util.RegisterDefaultEntities;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -33,9 +32,6 @@ import java.util.concurrent.Executors;
  * 自定义的一些配置，由于 EventStorageEngine 的 Auto Config 在自定义了 eventStore 之后就不起作用了，所以这里把 JpaEventStoreAutoConfiguration 中的内容搬过来了
  */
 @Configuration
-@RegisterDefaultEntities(packages = {
-    "org.axonframework.eventsourcing.eventstore.jpa"
-})
 public class AxonContinueConfiguration {
 
     @Bean
@@ -80,7 +76,7 @@ public class AxonContinueConfiguration {
                                                  EntityManagerProvider entityManagerProvider,
                                                  EventUpcaster contractUpCaster,
                                                  TransactionManager transactionManager) {
-        return JpaEventStorageEngine.builder()
+        return CustomJpaEventStorageEngine.builder()
             .snapshotSerializer(defaultSerializer)
             .upcasterChain(contractUpCaster)
             .persistenceExceptionResolver(persistenceExceptionResolver)

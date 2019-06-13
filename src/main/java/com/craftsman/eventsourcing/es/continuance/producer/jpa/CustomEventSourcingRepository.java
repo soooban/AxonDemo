@@ -12,7 +12,10 @@ import org.axonframework.messaging.annotation.HandlerDefinition;
 import org.axonframework.messaging.annotation.ParameterResolverFactory;
 import org.axonframework.messaging.unitofwork.CurrentUnitOfWork;
 import org.axonframework.messaging.unitofwork.UnitOfWork;
-import org.axonframework.modelling.command.*;
+import org.axonframework.modelling.command.AggregateNotFoundException;
+import org.axonframework.modelling.command.LockAwareAggregate;
+import org.axonframework.modelling.command.Repository;
+import org.axonframework.modelling.command.RepositoryProvider;
 import org.axonframework.modelling.command.inspection.AggregateModel;
 
 import java.time.Instant;
@@ -134,9 +137,9 @@ public class CustomEventSourcingRepository<T> extends EventSourcingRepository<T>
         }
 
         /**
-         * Sets the {@link EventStore} that holds the event stream this repository needs to event source an Aggregate.
+         * Sets the {@link EventStore} that holds the event com.craftsman.eventsourcing.stream this repository needs to event source an Aggregate.
          *
-         * @param eventStore an {@link EventStore} that holds the event stream this repository needs to event source
+         * @param eventStore an {@link EventStore} that holds the event com.craftsman.eventsourcing.stream this repository needs to event source
          *                   an Aggregate
          * @return the current Builder instance, for fluent interfacing
          */
@@ -218,10 +221,10 @@ public class CustomEventSourcingRepository<T> extends EventSourcingRepository<T>
 
         /**
          * Instantiate the {@link AggregateFactory} of generic type {@code T} for the Aggregate this
-         * {@link EventSourcingRepository} will instantiate based on an event stream.
+         * {@link EventSourcingRepository} will instantiate based on an event com.craftsman.eventsourcing.stream.
          *
          * @return a {@link AggregateFactory} of generic type {@code T} for the Aggregate this
-         * {@link EventSourcingRepository} will instantiate based on an event stream
+         * {@link EventSourcingRepository} will instantiate based on an event com.craftsman.eventsourcing.stream
          */
         private AggregateFactory<T> buildAggregateFactory() {
             if (aggregateFactory == null) {
