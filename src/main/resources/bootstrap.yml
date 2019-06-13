@@ -12,6 +12,36 @@ spring:
     show-sql: false
     properties:
       hibernate.dialect: org.hibernate.dialect.MySQL55Dialect
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: creams_user
+    password: Souban701
+  cloud:
+    stream.bindings:
+      contract-events: # 这个名字对应代码中@input("value") 的 value
+        destination: contract-events # 这个对应 rabbit 中的 channel
+        contentType: application/json # 这个指定传输类型，其实可以默认指定，但是目前每个地方都写了，所以统一下
+      contract-events-input:
+        destination: contract-events
+        contentType: application/json
+        group: event-sourcing-service
+        durableSubscription: true
+    stream.rabbit.bindings.contract-events-input.consumer:
+      autoBindDlq: true
+      republishToDlq: true
+      deadLetterQueueName: contract-error.dlq
+logging:
+  level.org:
+    springframework:
+      web: INFO
+      cloud.sleuth: INFO
+    apache.ibatis: DEBUG
+    java.sql: DEBUG
+    hibernate:
+      SQL: DEBUG
+      type.descriptor.sql: TRACE
+
 axon:
   serializer:
     general: jackson

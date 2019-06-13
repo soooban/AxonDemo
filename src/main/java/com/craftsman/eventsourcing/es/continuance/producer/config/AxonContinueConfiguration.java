@@ -20,6 +20,7 @@ import org.axonframework.messaging.annotation.ParameterResolverFactory;
 import org.axonframework.serialization.Serializer;
 import org.axonframework.serialization.upcasting.event.EventUpcaster;
 import org.axonframework.spring.config.AxonConfiguration;
+import org.axonframework.springboot.util.RegisterDefaultEntities;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -32,6 +33,9 @@ import java.util.concurrent.Executors;
  * 自定义的一些配置，由于 EventStorageEngine 的 Auto Config 在自定义了 eventStore 之后就不起作用了，所以这里把 JpaEventStoreAutoConfiguration 中的内容搬过来了
  */
 @Configuration
+@RegisterDefaultEntities(packages = {
+    "org.axonframework.eventsourcing.eventstore.jpa"
+})
 public class AxonContinueConfiguration {
 
     @Bean

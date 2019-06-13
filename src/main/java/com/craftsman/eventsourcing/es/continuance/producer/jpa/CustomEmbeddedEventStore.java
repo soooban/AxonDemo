@@ -47,7 +47,7 @@ public class CustomEmbeddedEventStore extends EmbeddedEventStore {
             eventStream = storageEngine().readEvents(aggregateIdentifier);
         }
 
-        eventStream = new IteratorBackedDomainEventStream(eventStream.asStream().filter(m -> m.getTimestamp().isBefore(timestamp)).iterator());
+        eventStream = new IteratorBackedDomainEventStream(eventStream.asStream().filter(m -> m.getTimestamp().compareTo(timestamp) <= 0).iterator());
 
         Stream<? extends DomainEventMessage<?>> domainEventMessages = stagedDomainEventMessages(aggregateIdentifier);
         return DomainEventStream.concat(eventStream, DomainEventStream.of(domainEventMessages));
