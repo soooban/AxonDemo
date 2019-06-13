@@ -26,8 +26,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import java.util.Collections;
-import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
 
 /**
  * 自定义的一些配置，由于 EventStorageEngine 的 Auto Config 在自定义了 eventStore 之后就不起作用了，所以这里把 JpaEventStoreAutoConfiguration 中的内容搬过来了
@@ -64,8 +62,6 @@ public class AxonContinueConfiguration {
 
     @Bean
     public AggregateSnapshotter snapShotter(CustomEmbeddedEventStore eventStore, ParameterResolverFactory parameterResolverFactory) {
-        Executor executor = Executors.newSingleThreadExecutor();
-
         return AggregateSnapshotter.builder()
             .eventStore(eventStore)
             .parameterResolverFactory(parameterResolverFactory)
