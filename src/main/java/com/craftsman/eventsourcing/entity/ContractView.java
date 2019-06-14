@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.annotation.Version;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -32,4 +33,6 @@ public class ContractView implements ContractInterface {
 
     private boolean deleted = false;
 
+    @Version
+    private Long version;
 }

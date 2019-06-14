@@ -45,3 +45,8 @@ logging:
 axon:
   serializer:
     general: jackson
+  distributed:
+    enabled: true
+    spring-cloud:
+      fallback-to-http-get: true
+      fallback-url: /axon-routing

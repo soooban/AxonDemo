@@ -56,13 +56,28 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.axonframework.extensions.springcloud/axon-springcloud -->
+		<dependency>
+			<groupId>org.axonframework.extensions.springcloud</groupId>
+			<artifactId>axon-springcloud</artifactId>
+			<version>4.1</version>
+		</dependency>
 		<!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
 		<dependency>
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
 			<version>27.1-jre</version>
 		</dependency>
-
+		<dependency>
+			<groupId>net.javacrumbs.shedlock</groupId>
+			<artifactId>shedlock-spring</artifactId>
+			<version>2.5.0</version>
+		</dependency>
+		<dependency>
+			<groupId>net.javacrumbs.shedlock</groupId>
+			<artifactId>shedlock-provider-jdbc-template</artifactId>
+			<version>2.5.0</version>
+		</dependency>
 
 		<dependency>
 			<groupId>mysql</groupId>

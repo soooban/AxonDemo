@@ -1,4 +1,4 @@
-package com.craftsman.eventsourcing.helper;
+package com.craftsman.eventsourcing.es.continuance.producer.uuid;
 
 import lombok.extern.slf4j.Slf4j;
 

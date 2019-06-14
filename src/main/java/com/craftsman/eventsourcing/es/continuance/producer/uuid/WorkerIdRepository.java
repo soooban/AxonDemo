@@ -1,4 +1,4 @@
-package com.craftsman.eventsourcing.helper;
+package com.craftsman.eventsourcing.es.continuance.producer.uuid;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

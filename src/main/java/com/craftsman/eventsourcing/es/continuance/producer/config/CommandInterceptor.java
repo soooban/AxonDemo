@@ -4,7 +4,7 @@ import com.craftsman.eventsourcing.es.command.AbstractCommand;
 import com.craftsman.eventsourcing.es.command.CreateContractCommand;
 import com.craftsman.eventsourcing.es.continuance.common.MetaDataUser;
 import com.craftsman.eventsourcing.es.continuance.common.MetaDataUserInterface;
-import com.craftsman.eventsourcing.helper.UIDGenerator;
+import com.craftsman.eventsourcing.es.continuance.producer.uuid.UIDGenerator;
 import lombok.AllArgsConstructor;
 import org.axonframework.commandhandling.GenericCommandMessage;
 import org.axonframework.messaging.MessageDispatchInterceptor;
