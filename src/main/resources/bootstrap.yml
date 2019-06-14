@@ -15,8 +15,8 @@ spring:
   rabbitmq:
     host: localhost
     port: 5672
-    username: creams_user
-    password: Souban701
+    username: <username>
+    password: <password>
   cloud:
     stream.bindings:
       contract-events: # 这个名字对应代码中@input("value") 的 value
