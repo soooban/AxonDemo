@@ -23,6 +23,6 @@ Event Soucing 通常会和 DDD CQRS 一起讨论，在微服务盛行的前提�
 3. [Event Sourcing 和 CQRS落地（三）：Event-Sourcing 实现](http://soooban.github.io/2019/06/11/%E5%AE%9E%E7%8E%B0-Event-Sourcing/)
 4. [Event Sourcing 和 CQRS落地（四）：CQRS 实现](http://soooban.github.io/2019/06/11/%E5%AE%9E%E7%8E%B0-CQRS/)
 5. [Event Sourcing 和 CQRS落地（五）：深入使用-Axon](http://soooban.github.io/2019/06/12/%E6%B7%B1%E5%85%A5%E4%BD%BF%E7%94%A8-Axon/)
-6. [Event Sourcing 和 CQRS落地（六）：Spring-Cloud-Stream 优化](http://soooban.github.io/2019/06/13/%E5%AE%9E%E7%8E%B0%E5%8F%AF%E9%9D%A0%E6%B6%88%E6%81%AF/)
-7. [Event Sourcing 和 CQRS落地（七）：实现可靠消息](http://soooban.github.io/2019/06/13/Spring-Cloud-Stream-%E4%BC%98%E5%8C%96/)
+6. [Event Sourcing 和 CQRS落地（六）：实现可靠消息](http://soooban.github.io/2019/06/13/%E5%AE%9E%E7%8E%B0%E5%8F%AF%E9%9D%A0%E6%B6%88%E6%81%AF/)
+7. [Event Sourcing 和 CQRS落地（七）：Spring-Cloud-Stream 优化](http://soooban.github.io/2019/06/13/Spring-Cloud-Stream-%E4%BC%98%E5%8C%96/)
 8. [Event Sourcing 和 CQRS落地（八）：服务优化](http://soooban.github.io/2019/06/14/%E6%9C%8D%E5%8A%A1%E4%BC%98%E5%8C%96/)
