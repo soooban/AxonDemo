@@ -21,14 +21,14 @@ public class ContractPublisher {
 
     private final OutputChannel outputChannel;
 
-    public void sendEvent(DomainEvent event) {
+    public void sendEvent(DomainEvent<?,?> event) {
 
         // use com.craftsman.eventsourcing.stream to send message here
         log.info(MessageFormat.format("prepare to send message : {0}]", new Gson().toJson(event)));
 
         // 为了兼容 SCS 原生的 header 路由规则，这里在 header 中写入 eventType
         String eventType = StringUtils.substringAfterLast(event.getPayloadType(), ".");
-        MessageBuilder<DomainEvent> messageBuilder = MessageBuilder.withPayload(event);
+        MessageBuilder<DomainEvent<?,?>> messageBuilder = MessageBuilder.withPayload(event);
         if (null != eventType) {
             messageBuilder.setHeader("eventType", eventType);
             messageBuilder.setHeader("messageType", "eventSourcing");
